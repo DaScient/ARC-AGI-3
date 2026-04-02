@@ -58,10 +58,7 @@ class Scorer:
             ValueError: If human_baseline_multiplier is less than 1.0.
         """
         if human_baseline_multiplier < 1.0:
-            msg = (
-                f"human_baseline_multiplier must be >= 1.0, "
-                f"got {human_baseline_multiplier}"
-            )
+            msg = f"human_baseline_multiplier must be >= 1.0, got {human_baseline_multiplier}"
             raise ValueError(msg)
         self._multiplier = human_baseline_multiplier
 
@@ -99,7 +96,7 @@ class Scorer:
             return 0.0
 
         ratio = human_baseline / agent_actions
-        return min(1.0, ratio ** 2)
+        return min(1.0, ratio**2)
 
     def compute_episode_score(
         self,

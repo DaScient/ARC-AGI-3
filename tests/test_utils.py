@@ -6,7 +6,6 @@ utilities.
 
 from __future__ import annotations
 
-import json
 import random
 from pathlib import Path
 from typing import Any
@@ -83,11 +82,11 @@ class TestReproducibility:
     def test_seed_all_deterministic(self):
         seed_all(42)
         val1 = random.random()
-        np_val1 = np.random.random()  # noqa: NPY002
+        np_val1 = np.random.random()
 
         seed_all(42)
         val2 = random.random()
-        np_val2 = np.random.random()  # noqa: NPY002
+        np_val2 = np.random.random()
 
         assert val1 == val2
         assert np_val1 == np_val2

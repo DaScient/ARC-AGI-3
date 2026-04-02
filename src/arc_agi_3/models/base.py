@@ -68,9 +68,7 @@ class BaseWorldModel(ABC):
         """
 
     @abstractmethod
-    def predict(
-        self, state: NDArray[np.float64], action: str
-    ) -> Prediction:
+    def predict(self, state: NDArray[np.float64], action: str) -> Prediction:
         """Predict the next state given a current state and action.
 
         Args:
@@ -94,9 +92,7 @@ class BaseWorldModel(ABC):
         """
 
     @abstractmethod
-    def simulate(
-        self, state: NDArray[np.float64], actions: list[str]
-    ) -> list[Prediction]:
+    def simulate(self, state: NDArray[np.float64], actions: list[str]) -> list[Prediction]:
         """Simulate a sequence of actions from a starting state.
 
         Args:
@@ -108,9 +104,7 @@ class BaseWorldModel(ABC):
         """
 
     @abstractmethod
-    def infer_goals(
-        self, observation_history: list[dict[str, Any]]
-    ) -> list[GoalHypothesis]:
+    def infer_goals(self, observation_history: list[dict[str, Any]]) -> list[GoalHypothesis]:
         """Infer plausible goals from the agent's observation history.
 
         Args:

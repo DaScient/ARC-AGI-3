@@ -36,7 +36,7 @@ def seed_all(seed: int) -> None:
         raise ValueError(msg)
 
     random.seed(seed)
-    np.random.seed(seed)  # noqa: NPY002
+    np.random.seed(seed)
 
 
 def save_checkpoint(state: dict[str, Any], path: str) -> Path:

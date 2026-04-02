@@ -64,7 +64,7 @@ class TestScorer:
 
     def test_invalid_multiplier_raises(self):
         """Multiplier below 1.0 should raise ValueError."""
-        with pytest.raises(ValueError, match="must be >= 1.0"):
+        with pytest.raises(ValueError, match=r"must be >= 1\.0"):
             Scorer(human_baseline_multiplier=0.5)
 
     def test_compute_episode_score(self, scorer):

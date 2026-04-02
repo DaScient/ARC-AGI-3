@@ -8,8 +8,6 @@ and on verifying subclass contracts.
 
 from __future__ import annotations
 
-from typing import Any
-
 import pytest
 
 from arc_agi_3.agent.base import Action, Observation
