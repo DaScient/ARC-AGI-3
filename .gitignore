@@ -1,0 +1,45 @@
+# =============================================================================
+# ARC-AGI-3 .gitignore
+# =============================================================================
+# This file specifies files and directories that should not be tracked by
+# version control. It covers Python build artifacts, virtual environments,
+# IDE files, configuration secrets, and generated outputs.
+# =============================================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# --- Virtual Environments ---
+.venv/
+venv/
+ENV/
+
+# --- IDE and Editor Files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Tool Caches ---
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Secrets and Local Configuration ---
+.env
+
+# --- Generated Outputs ---
+outputs/
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db

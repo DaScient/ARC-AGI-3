@@ -1,0 +1,66 @@
+# =============================================================================
+# Agent Configuration — ARC-AGI-3
+# =============================================================================
+# This file controls all aspects of the agent's behavior, including its
+# exploration strategy, action-selection policy, learning dynamics, and
+# internal memory management.
+#
+# Every parameter is documented with its purpose, default value, and valid
+# range. For a complete prose reference, see docs/CONFIGURATION.md.
+# =============================================================================
+
+agent:
+
+  # -------------------------------------------------------------------------
+  # Exploration Settings
+  # -------------------------------------------------------------------------
+  # These parameters govern the balance between exploration (discovering how
+  # the environment works) and exploitation (acting on what has been learned).
+
+  exploration:
+    # The relative weight of curiosity-driven exploration in action selection.
+    # Range: 0.0 (pure exploitation) to 1.0 (pure exploration).
+    curiosity_weight: 0.5
+
+    # Multiplicative decay applied to curiosity_weight after each turn.
+    # Range: 0.0 (instant decay) to 1.0 (no decay).
+    exploration_decay: 0.95
+
+    # Minimum novelty score to trigger an exploration bonus.
+    # Range: 0.0 to 1.0.
+    novelty_threshold: 0.1
+
+  # -------------------------------------------------------------------------
+  # Policy Settings
+  # -------------------------------------------------------------------------
+  # These parameters configure the action-selection policy.
+
+  policy:
+    # The type of policy to use: "planning", "reactive", or "hybrid".
+    policy_type: "planning"
+
+    # Number of future turns to simulate during planning.
+    # Range: 1 to 50. Ignored when policy_type is "reactive".
+    planning_horizon: 5
+
+    # Number of candidate action sequences maintained during beam search.
+    # Range: 1 to 100. Ignored when policy_type is "reactive".
+    planning_beam_width: 10
+
+  # -------------------------------------------------------------------------
+  # Learning Settings
+  # -------------------------------------------------------------------------
+  # These parameters control how the agent updates its world model.
+
+  learning:
+    # Step size for world model parameter updates.
+    # Range: 0.0 to 1.0.
+    learning_rate: 0.001
+
+    # Maximum transitions stored in episodic memory.
+    # Range: 100 to 100000.
+    memory_capacity: 1000
+
+    # Number of transitions sampled per model update.
+    # Range: 1 to 512.
+    batch_size: 32

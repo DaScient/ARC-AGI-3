@@ -1,0 +1,134 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel>=0.41.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "arc-agi-3"
+version = "0.1.0"
+description = "DaScient's autonomous agent for the ARC-AGI-3 benchmark — Abstraction and Reasoning Corpus, Third Generation"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "DaScient"},
+]
+keywords = ["arc-agi", "artificial-intelligence", "reasoning", "benchmark", "agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.26.0",
+    "pyyaml>=6.0.1",
+    "requests>=2.31.0",
+    "pydantic>=2.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.4.0",
+    "mypy>=1.8.0",
+    "types-PyYAML>=6.0.0",
+    "types-requests>=2.31.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/DaScient/ARC-AGI-3"
+Repository = "https://github.com/DaScient/ARC-AGI-3"
+Documentation = "https://github.com/DaScient/ARC-AGI-3/tree/main/docs"
+Issues = "https://github.com/DaScient/ARC-AGI-3/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------------------
+# Ruff — Linting and Formatting Configuration
+# ---------------------------------------------------------------------------
+# Ruff is the project's sole linting and formatting tool. It replaces flake8,
+# isort, black, and pyupgrade with a single, fast, Rust-based tool.
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # Pyflakes
+    "I",     # isort (import ordering)
+    "N",     # pep8-naming
+    "UP",    # pyupgrade
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "RUF",   # Ruff-specific rules
+]
+ignore = [
+    "E501",  # line length is enforced by the formatter, not the linter
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["arc_agi_3"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+# ---------------------------------------------------------------------------
+# Mypy — Static Type Checking Configuration
+# ---------------------------------------------------------------------------
+# Mypy runs in strict mode to enforce complete type annotations on all public
+# interfaces. This catches type errors at development time rather than at
+# runtime and ensures that module boundaries are well-defined.
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+# ---------------------------------------------------------------------------
+# Pytest — Testing Configuration
+# ---------------------------------------------------------------------------
+# Pytest is configured to discover tests in the tests/ directory, measure
+# code coverage against the src/arc_agi_3/ package, and enforce a minimum
+# coverage threshold.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers"
+markers = [
+    "slow: marks tests that take more than 10 seconds to run",
+    "integration: marks tests that require external services",
+]
+
+[tool.coverage.run]
+source = ["src/arc_agi_3"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true

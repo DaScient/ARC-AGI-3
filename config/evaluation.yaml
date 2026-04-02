@@ -1,0 +1,59 @@
+# =============================================================================
+# Evaluation Configuration — ARC-AGI-3
+# =============================================================================
+# This file controls scoring, metrics collection, reporting, and regression
+# detection for the evaluation module.
+#
+# Every parameter is documented with its purpose, default value, and valid
+# range. For a complete prose reference, see docs/CONFIGURATION.md.
+# =============================================================================
+
+evaluation:
+
+  # -------------------------------------------------------------------------
+  # Scoring Settings
+  # -------------------------------------------------------------------------
+  # These parameters define how the agent's performance is scored.
+
+  scoring:
+    # Primary scoring metric.
+    # Valid values: "rhae" (Relative Human Action Efficiency),
+    #               "raw_actions", "levels_completed".
+    efficiency_metric: "rhae"
+
+    # Maximum agent-to-human action ratio before zero score.
+    # Range: 1.0 to 20.0.
+    human_baseline_multiplier: 5.0
+
+  # -------------------------------------------------------------------------
+  # Logging Settings
+  # -------------------------------------------------------------------------
+  # These parameters control evaluation logging verbosity and format.
+
+  logging:
+    # Minimum log severity level.
+    # Valid values: "DEBUG", "INFO", "WARNING", "ERROR".
+    log_level: "INFO"
+
+    # Output format for evaluation reports.
+    # Valid values: "json", "csv", "text".
+    output_format: "json"
+
+    # Filesystem path for evaluation report output.
+    output_directory: "outputs/evaluation/"
+
+  # -------------------------------------------------------------------------
+  # Regression Detection Settings
+  # -------------------------------------------------------------------------
+  # These parameters control automated regression detection.
+
+  regression:
+    # Enable or disable regression detection.
+    enable_regression_detection: true
+
+    # Minimum relative performance decrease to trigger a regression alert.
+    # Range: 0.01 to 0.5.
+    regression_threshold: 0.05
+
+    # Filesystem path for historical baseline storage.
+    baseline_directory: "outputs/baselines/"

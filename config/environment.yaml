@@ -1,0 +1,64 @@
+# =============================================================================
+# Environment Configuration — ARC-AGI-3
+# =============================================================================
+# This file controls all aspects of the system's interaction with the
+# ARC-AGI-3 benchmark, including API connection parameters, local simulator
+# settings, and frame-processing options.
+#
+# Every parameter is documented with its purpose, default value, and valid
+# range. For a complete prose reference, see docs/CONFIGURATION.md.
+# =============================================================================
+
+environment:
+
+  # -------------------------------------------------------------------------
+  # API Connection Settings
+  # -------------------------------------------------------------------------
+  # These parameters govern the connection to the ARC-AGI-3 API.
+
+  api:
+    # Base URL of the ARC-AGI-3 API.
+    endpoint_url: "https://api.arcprize.org/v3"
+
+    # API authentication key. Leave empty here and provide via the
+    # ARC_API_KEY environment variable or .env file. Never commit this value.
+    api_key: ""
+
+    # Maximum seconds to wait for an API response before timeout.
+    # Range: 5 to 300.
+    timeout_seconds: 30
+
+    # Maximum number of retry attempts for failed API requests.
+    # Range: 0 to 10.
+    max_retries: 3
+
+    # Multiplicative backoff factor between retries.
+    # Range: 1.0 to 5.0.
+    retry_backoff_factor: 1.5
+
+  # -------------------------------------------------------------------------
+  # Local Simulator Settings
+  # -------------------------------------------------------------------------
+  # These parameters configure the local environment simulator for offline
+  # development and testing.
+
+  local:
+    # Set to true to use the local simulator instead of the remote API.
+    use_local: false
+
+    # Filesystem path to local environment data files.
+    local_data_path: "data/sample_environments/"
+
+  # -------------------------------------------------------------------------
+  # Frame Processing Settings
+  # -------------------------------------------------------------------------
+  # These parameters control how raw API frames are parsed into observations.
+
+  frame:
+    # Expected grid dimensions (width and height in cells).
+    # The ARC-AGI-3 specification uses 64x64 grids.
+    grid_size: 64
+
+    # Number of distinct cell values (colors/states).
+    # The ARC-AGI-3 specification uses values 0-15.
+    color_depth: 16
