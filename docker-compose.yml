@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  arc-solver:
+    build: .
+    image: arc-solver:latest
+    volumes:
+      # Mount a local tasks directory at runtime:
+      #   docker-compose run arc-solver solve /tasks/my_task.json
+      - ./data:/app/data:ro
+    entrypoint: ["python", "-m", "arc_solver"]
+    command: ["--help"]
